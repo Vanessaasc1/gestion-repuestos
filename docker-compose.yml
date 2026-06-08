@@ -1,0 +1,45 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: repuestos_database
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: repuestos_app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./backend/sql/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+
+  backend:
+    build:
+      context: ./backend
+    container_name: repuestos_backend
+    restart: unless-stopped
+    depends_on:
+      - database
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgres://postgres:postgres@database:5432/repuestos_app
+      JWT_SECRET: cambia_este_valor_en_produccion
+      JWT_EXPIRES_IN: 8h
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:4000/api
+    container_name: repuestos_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  postgres_data:
