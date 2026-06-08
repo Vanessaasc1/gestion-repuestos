@@ -137,6 +137,41 @@ Crear el archivo `frontend/.env` a partir de `frontend/.env.example`.
 VITE_API_URL=http://localhost:4000/api
 ```
 
+## Despliegue en produccion
+
+### Backend en Render
+
+El repositorio incluye un archivo `render.yaml` para crear un servicio web del backend y una base de datos PostgreSQL en Render.
+
+Variables principales:
+
+- `DATABASE_URL`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+- `PORT`
+
+Ruta de prueba del backend:
+
+```text
+https://URL_DEL_BACKEND/api/health
+```
+
+Documentacion Swagger en produccion:
+
+```text
+https://URL_DEL_BACKEND/api/docs
+```
+
+### Frontend en Vercel
+
+El frontend se despliega desde la carpeta `frontend`. La variable requerida es:
+
+```env
+VITE_API_URL=https://URL_DEL_BACKEND/api
+```
+
+El repositorio incluye `frontend/vercel.json` con la configuracion de build para Vite.
+
 ## Instalacion local
 
 ### 1. Clonar el repositorio
