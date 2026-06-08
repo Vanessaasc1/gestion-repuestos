@@ -6,6 +6,12 @@ import { requireAuth } from "../middleware/auth.js";
 
 const router = Router();
 
+/**
+ * Generates a JWT containing the basic session data for a user.
+ *
+ * @param {{id: number, name: string, email: string, role: string}} user User returned by the database.
+ * @returns {string} Signed JWT used by the frontend for authenticated requests.
+ */
 function signToken(user) {
   return jwt.sign(
     { id: user.id, name: user.name, email: user.email, role: user.role },
