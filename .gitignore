@@ -3,5 +3,8 @@ dist/
 .env
 backend/.env
 frontend/.env
-npm-debug.log*coverage/
+npm-debug.log*
+coverage/
 backend/coverage/
+frontend/test-results/
+frontend/playwright-report/
