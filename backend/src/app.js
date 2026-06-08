@@ -10,12 +10,12 @@ import dashboardRoutes from "./routes/dashboard.routes.js";
 import { swaggerDocument } from "./swagger.js";
 
 /**
- * Creates and configures the Express application used by the API.
+ * Crea y configura la aplicacion Express usada por la API.
  *
- * This function is separated from `server.js` so the same app can be reused by
- * automated tests without opening a network port.
+ * Esta funcion esta separada de `server.js` para reutilizar la misma app en
+ * pruebas automatizadas sin abrir un puerto de red.
  *
- * @returns {import("express").Express} Configured Express application.
+ * @returns {import("express").Express} Aplicacion Express configurada.
  */
 export function createApp() {
   const app = express();

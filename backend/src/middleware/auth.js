@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 
 /**
- * Validates the JWT sent in the Authorization header.
+ * Valida el JWT enviado en el encabezado Authorization.
  *
- * When the token is valid, the decoded user information is stored in `req.user`
- * so route handlers can identify the authenticated user.
+ * Cuando el token es valido, la informacion del usuario se guarda en `req.user`
+ * para que las rutas puedan identificar al usuario autenticado.
  *
- * @param {import("express").Request} req Express request.
- * @param {import("express").Response} res Express response.
- * @param {import("express").NextFunction} next Express next callback.
+ * @param {import("express").Request} req Solicitud de Express.
+ * @param {import("express").Response} res Respuesta de Express.
+ * @param {import("express").NextFunction} next Funcion para continuar el flujo.
  * @returns {void}
  */
 export function requireAuth(req, res, next) {
@@ -28,10 +28,10 @@ export function requireAuth(req, res, next) {
 }
 
 /**
- * Allows access only to users whose role is included in the permitted roles.
+ * Permite el acceso solo a usuarios cuyo rol este dentro de los roles permitidos.
  *
- * @param {...string} roles Roles allowed to execute the protected action.
- * @returns {import("express").RequestHandler} Express middleware.
+ * @param {...string} roles Roles autorizados para ejecutar la accion protegida.
+ * @returns {import("express").RequestHandler} Middleware de Express.
  */
 export function allowRoles(...roles) {
   return (req, res, next) => {

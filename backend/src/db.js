@@ -8,11 +8,11 @@ export const pool = new pg.Pool({
 });
 
 /**
- * Executes a SQL query using the shared PostgreSQL connection pool.
+ * Ejecuta una consulta SQL usando el pool compartido de PostgreSQL.
  *
- * @param {string} text SQL sentence with optional parameter placeholders.
- * @param {Array<unknown>} [params=[]] Values used by the SQL placeholders.
- * @returns {Promise<import("pg").QueryResult>} PostgreSQL query result.
+ * @param {string} text Sentencia SQL con parametros opcionales.
+ * @param {Array<unknown>} [params=[]] Valores usados por los parametros SQL.
+ * @returns {Promise<import("pg").QueryResult>} Resultado de la consulta.
  */
 export async function query(text, params = []) {
   const result = await pool.query(text, params);
